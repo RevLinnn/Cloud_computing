@@ -1,8 +1,120 @@
 # Sobat Tani Backend Documentation
+![Image](Cloud.png "Infrastruktur")
+
+## Table of Contents
+## Table of Contents
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Configuration](#configuration)
+  - [How to Create Firebase Service Account Key](#how-to-create-firebase-service-account-key)
+- [Database Schema](#database-schema)
+  - [Users](#users)
+  - [Plants](#plants)
+  - [Status](#status)
+  - [Bookmarks](#bookmarks)
+- [Documentation API](#documentation-api)
+  - [Root](#root)
+    - [GET /](#method-get)
+  - [Auth](#auth)
+    - [Register](#register)
+    - [Login](#login)
+    - [Update User](#updateuser)
+    - [Detail User](#detail-user)
+  - [Bookmark](#bookmark)
+    - [Add Bookmark](#add-bookmark)
+    - [Get All Bookmarks](#get-all-bookmarks)
+    - [Get Bookmark By ID](#getbookmarkbyid)
+    - [Delete Bookmark](#deletebookmark)
+  - [Status](#status)
+    - [Add Status](#add-status)
+    - [Get All Statuses](#get-all-statuses)
+    - [Get Status By ID](#get-status-by-id)
+    - [Delete Status](#delete-status)
+  - [Detail Plants](#detail-plants)
+    - [Get Plant Details](#get-plant-details)
+
+
+
+  
 # Prerequisites
+- node 21 or later
+  ```bash
+     node -v
+- Npm 10.8.0 or later
+  ```bash
+     npm -v
 # Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/RevLinnn/Cloud_computing.git
+   cd Cloud_computing
+2. **Install dependencies:**
+     ```bash
+     npm install
+     ```
+
 # Configuration
+The project uses environment variables for configuration. Ensure you have set up a .env file with the necessary variables. You can copy .env.example as a template.
+
+- `JWT_SECRET`: A secret key used for JWT token generation.
+- `FIREBASE_PROJECT_ID:` The ID of your Firebase project.
+- `FIREBASE_PRIVATE_KEY_ID:` The ID of the private key associated with your Firebase service account.
+- `FIREBASE_PRIVATE_KEY:` The private key itself associated with your Firebase service account. Note: Ensure the new lines are properly handled as per the actual key format.
+- `FIREBASE_CLIENT_EMAIL:` The email address associated with your Firebase service account.
+- `FIREBASE_CLIENT_ID:` The client ID associated with your Firebase service account.
+- `FIREBASE_AUTH_URI:` The URI for Firebase authentication.
+- `FIREBASE_TOKEN_URI:` The URI for Firebase token authentication.
+- `FIREBASE_AUTH_PROVIDER_X509_CERT_URL:` The URI for Firebase authentication provider's X.509 certificate.
+- `FIREBASE_CLIENT_X509_CERT_URL:` The URI for Firebase client's X.509 certificate.
+
+## How to Create Firebase Service Account Key
+Follow these steps to generate a Firebase service account key and configure your `.env` file.
+
+1. **Go to the Firebase Console:**
+2. **Select Your Project:**
+3. **Open Project Settings:**
+4. **Navigate to Service Accounts Tab:**
+5. **Generate New Private Key:**
+6. **Confirm and Download Key:**
+7. **Copy Necessary Fields to .env File:**
+
 # Database Schema
+This project uses Firestore as its database. Firestore is a NoSQL document-based database that is part of Firebase.
+
+### Users
+This collection stores information about users.
+- `uid` (string): Unique identifier for the user.
+- `name` (string): Name of the user.
+- `email` (string): Email address of the user.
+- `password` (string): Password of the user.
+
+### Plants
+This collection stores information about plants.
+- `id` (string): Unique identifier for the plant.
+- `nama_tanaman` (string): Name of the plant.
+- `deskripsi` (string): Brief description of the plant.
+- `ciri_ciri` (map): Characteristics of the plant.
+- `cara_pengobatan` (map): Treatment methods for the plant.
+- `cara_pengobatan_alami` (map): Natural treatment methods for the plant.
+
+### Status
+This collection stores the disease status of plants inputted by users.
+- `userId` (string): Unique identifier of the user who inputs the status.
+- `nama_tanaman` (string): Name of the plant with the disease status.
+- `jenis_penyakit` (string): Type of disease affecting the plant.
+- `imageUrl` (string): URL of the image related to the plant's disease status.
+- `timestamp` (timestamp): Time when the status was inputted.
+
+### Bookmarks
+This collection stores plants bookmarked by users.
+- `userId` (string): Unique identifier of the user who bookmarks the plant.
+- `nama_tanaman` (string): Name of the bookmarked plant.
+- `jenis_penyakit` (string): Type of disease noted on the bookmarked plant.
+- `imageUrl` (string): URL of the image related to the bookmark.
+- `timestamp` (timestamp): Time when the bookmark was created.
+
+  
 # Documentation API
 API Backend App Sobat Tani (Auth User, Bookmark, Status, Detail Plant)
 # 📁 root 
@@ -566,3 +678,12 @@ Retrieves details of a plant based on the provided name and disease type
 
 
 # Running the Application
+To run the Sobat Tani backend application, execute the following command:
+ ```bash
+     npm run start
+```
+The application will start running on `http://localhost:3000/`.
+
+Make sure you have the required dependencies installed and the necessary configurations set before running the application.
+
+That's it! You have successfully set up and documented the Sobat Tani backend application.
