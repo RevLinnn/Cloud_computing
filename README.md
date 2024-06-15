@@ -3,37 +3,38 @@
 # Installation
 # Configuration
 # Database Schema
-# Documentation API 
+# Documentation API
 API Backend App Sobat Tani (Auth User, Bookmark, Status, Detail Plant)
-# 📁 Folder: root 
-## End-point: root
+# 📁 root 
 ### Method: GET
 >```
 >/
 >```
+### Response: 200
+```json
+Hello World!
+```
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
-# 📁 Folder: User Auth 
-## Register User Information
+# 📁 Auth 
 
-Retrieves information about a specific user.
+## Register
 
-### Request
-
-- Method: `POST`
-    
-- URL: `/register`
+Description: Registers a new user with email, name, and password.
     
 - Headers:
     
-    - `Authorization: Bearer`
-      
+    - `Content-Type: application/json`
+### Method: POST
+>```
+>/auth/register
+>```
 ### Body (**raw**)
 
 ```json
 {
     "name": " C241-PS007",
-    "email": "sobattani@gmail.com",
+    "email": "sobattani1@gmail.com",
     "password": "securepassword01234"
 }
 ```
@@ -52,42 +53,28 @@ Retrieves information about a specific user.
 }
 ```
 
-### Response: 400
-```json
-{
-    "message": "Masukkan Password"
-}
-```
-
-### Response: 400
-```json
-{
-    "message": "Email telah terdaftar"
-}
-```
-
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
-# Login
+## Login
 
-Retrieves a JWT token and user information for an authenticated user
+**Description:** Logs in a user using email and password  
+  
 
 ### Request
-
-- Method: `POST`
-    
-- URL: `/auth/login`
     
 - Headers:
     
-    - `Authorization`: `Bearer`
-      
+    - `Content-Type: application/json`
+### Method: POST
+>```
+>/auth/login
+>```
 ### Body (**raw**)
 
 ```json
 {
-    "email": "sobattani@gmail.com",
-    "password": ""
+    "email": "sobattani1@gmail.com",
+    "password": "securepassword01234"
 }
 ```
 
@@ -96,11 +83,11 @@ Retrieves a JWT token and user information for an authenticated user
 {
     "message": "Success",
     "data": {
-        "uid": "3AH1fnwLBXNjibPkon1EcWor9mG2",
+        "uid": "user-id",
         "name": " C241-PS007",
-        "email": "sobattani@gmail.com"
+        "email": "sobattani1@gmail.com"
     },
-    "token": "<your-example-key>"
+    "token": "jwt-token"
 }
 ```
 
@@ -111,42 +98,31 @@ Retrieves a JWT token and user information for an authenticated user
 }
 ```
 
-### Response: 400
-```json
-{
-    "message": "Masukkan Email dengan benar"
-}
-```
-
-### Response: 400
-```json
-{
-    "message": "Password is required"
-}
-```
-
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
-# Update User Information
+
+
+## UpdateUser
 
 Updates the profile information of an authenticated user  
 
-Request
+### Method: PUT
+>```
+>/auth/user
+>```
+### Headers
 
-- Method: `PUT`
-    
-- URL: `/auth/user`
-    
-- Headers:
-    
-    - `Authorization`: `Bearer`
+|Content-Type|Value|
+|---|---|
+|Authorization|Bearer |
+
 
 ### Body (**raw**)
 
 ```json
 {
    "name": " C241-PS007new",
-    "password": "securepassword01234"
+    "password": "newsecurepassword01234"
 }
 ```
 
@@ -155,20 +131,36 @@ Request
 {
     "message": "Success",
     "data": {
-        "uid": "2aoGXnj8OETqgCTa3B6J3LWdaaU2",
-        "email": "SobatTaniTest23@gmail.com",
-        "name": " C241-PS007"
+        "uid": "user-id",
+        "email": "sobattani1@gmail.com",
+        "name": " C241-PS007new"
     }
 }
 ```
 
+⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+
+##Detail User
+
+Retrieves detailed information of the authenticated user
+
+### Method: GET
+>```
+>/auth/user
+>```
+### Headers
+
+|Content-Type|Value|
+|---|---|
+|Authorization|Bearer |
+
 ### Response: 200
 ```json
 {
-    "message": "Success",
+    "message": "success",
     "data": {
-        "uid": "2aoGXnj8OETqgCTa3B6J3LWdaaU2",
-        "email": "SobatTaniTest23@gmail.com",
+        "uid": "user-id",
+        "email": "sobattani1@gmail.com",
         "name": " C241-PS007new"
     }
 }
@@ -176,66 +168,30 @@ Request
 
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
-# Get User Details
+# 📁 Bookmark 
 
-Retrieves detailed information of the authenticated user
-
-### Request
-
-- Method: `GET`
-    
-- URL: `/auth/user`
-    
-- Headers:
-    
-    - `Authorization`: `Bearer`
-
-### Response: 200
-```json
-{
-    "message": "success",
-    "data": {
-        "uid": "3AH1fnwLBXNjibPkon1EcWor9mG2",
-        "name": " C241-PS007",
-        "email": "sobattani@gmail.com"
-    }
-}
-```
-
-### Response: 400
-```json
-{
-    "message": "Invalid token!"
-}
-```
-
-
-⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
-# 📁 Folder: Bookmark 
-
-# Add Bookmark
-
+## Add Bookmark
 Uploads an image and creates a bookmark entry for a plant disease
 
-### Request
+### Method: POST
+>```
+>/bookmark
+>```
+### Headers
 
-- Method: `POST`
-    
-- URL: `/bookmark`
-    
-- Headers:
-    
-    - `Authorization`: `Bearer`
-        
-    - `Content-Type : multipart/form-data`
+|Content-Type|Value|
+|---|---|
+|Authorization|Bearer |
+|Content-Type|multipart/form-data|
 
-### Body formdata
+
+### Body
 
 |Param|value|Type|
 |---|---|---|
-|nama_tanaman|penyakit jagung|text|
-|jenis_penyakit|ini adalah description|text|
-|image|/C:/Users/Fanissa Azzahra/Downloads/data-test-submissions/bad-request.jpg|file|
+|nama_tanaman|nama Tanaman 2|text|
+|jenis_penyakit|jenis penyakit|text|
+|image|/C:/Users/ACER/Pictures/Screenshots/Cuplikan layar 2024-06-08 170053.png|file|
 |||text|
 
 
@@ -244,27 +200,13 @@ Uploads an image and creates a bookmark entry for a plant disease
 {
     "message": "Succcess",
     "data": {
-        "id": "7g7gqdIHrMWdGm3y2p9S",
-        "userId": "2aoGXnj8OETqgCTa3B6J3LWdaaU2",
-        "nama_tanaman": "penyakit jagung",
-        "jenis_penyakit": "ini adalah description",
-        "imageUrl": "https://storage.googleapis.com/sobat-tani-project-425607.appspot.com/bookmark-image/6f0f35e3-8481-4c38-a1cf-72f1ab870c28.jpg",
+        "id": "bookmark-id",
+        "userId": "user-id",
+        "nama_tanaman": "nama Tanaman",
+        "jenis_penyakit": "jenis penyakit",
+        "imageUrl": "https://storage.googleapis.com/sobat-tani-project-425607.appspot.com/bookmark-image/c836a365-3f16-4ccc-9335-2657ede14c73.jpg",
         "timestamp": {}
     }
-}
-```
-
-### Response: 400
-```json
-{
-    "message": "Nama Tanaman tidak ditemukan"
-}
-```
-
-### Response: 400
-```json
-{
-    "message": "Penyakit Tanaman tidak ditemukan"
 }
 ```
 
@@ -277,27 +219,20 @@ Uploads an image and creates a bookmark entry for a plant disease
 
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
-
-# Get All Bookmarks
+## Get All Bookmarks
 
 Retrieves all bookmark entries for the authenticated user
 
-Request
+### Method: GET
+>```
+>/bookmark
+>```
+### Headers
 
-- Method: `GET`
-    
-- URL: `/bookmark/`
-    
-- Headers:
-    
-    - `Authorization`: `Bearer`
+|Content-Type|Value|
+|---|---|
+|Authorization|Bearer |
 
-### Response: 404
-```json
-{
-    "message": "BookMark tidak ditemukan!"
-}
-```
 
 ### Response: 200
 ```json
@@ -305,28 +240,20 @@ Request
     "message": "Succecss",
     "data": [
         {
-            "id": "2aGYVzhYJ9Gd0uMjfhZ0",
-            "nama_tanaman": "penyakit jagung",
-            "jenis_penyakit": "ini adalah description",
-            "imageUrl": "https://storage.googleapis.com/sobat-tani-project-425607.appspot.com/bookmark-image/ef6695c6-c5a1-485c-82d2-cb9accc1ffaa.jpg",
-            "userId": "2aoGXnj8OETqgCTa3B6J3LWdaaU2",
-            "timestamp": "2024-06-09 15:20:30"
+            "id": "bookmark-id",
+            "nama_tanaman": "nama Tanaman 2",
+            "jenis_penyakit": "jenis penyakit",
+            "imageUrl": "https://storage.googleapis.com/sobat-tani-project-425607.appspot.com/bookmark-image/90733aed-a089-4778-8e97-94b666d754bf.jpg",
+            "userId": "user-id",
+            "timestamp": "2024-06-13 16:19:29"
         },
         {
-            "id": "2ovGUXcOgS2Cy8rSK3xA",
-            "nama_tanaman": "Bambu Terbang",
-            "jenis_penyakit": "demam bambu",
-            "imageUrl": "https://storage.googleapis.com/sobat-tani-project-425607.appspot.com/bookmark-image/83fbecb1-76c7-4a05-b9a9-fb6bab37f6cf.jpg",
-            "userId": "2aoGXnj8OETqgCTa3B6J3LWdaaU2",
-            "timestamp": "2024-06-09 13:51:27"
-        },
-        {
-            "id": "7g7gqdIHrMWdGm3y2p9S",
-            "nama_tanaman": "penyakit jagung",
-            "jenis_penyakit": "ini adalah description",
-            "imageUrl": "https://storage.googleapis.com/sobat-tani-project-425607.appspot.com/bookmark-image/6f0f35e3-8481-4c38-a1cf-72f1ab870c28.jpg",
-            "userId": "2aoGXnj8OETqgCTa3B6J3LWdaaU2",
-            "timestamp": "2024-06-09 15:16:06"
+            "id": "bookmark-id",
+            "nama_tanaman": "nama Tanaman",
+            "jenis_penyakit": "jenis penyakit",
+            "imageUrl": "https://storage.googleapis.com/sobat-tani-project-425607.appspot.com/bookmark-image/c836a365-3f16-4ccc-9335-2657ede14c73.jpg",
+            "userId": "user-id",
+            "timestamp": "2024-06-13 16:11:53"
         }
     ]
 }
@@ -335,34 +262,20 @@ Request
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
-# Get Bookmark By ID
-
-### Retrieves a specific bookmark entry by its ID  
+## GetBookmarkById
+Retrieves a specific bookmark entry by its ID  
   
-Request
+### Method: GET
+>```
+>/bookmark/:id
+>```
 
-- Method: `GET`
-    
-- URL: `/bookmark/:id`
-    
-- Headers:
-    
-    - `Authorization`: `Bearer`
+### Headers
 
-### Response: 200
-```json
-{
-    "message": "Success",
-    "data": {
-        "id": "7g7gqdIHrMWdGm3y2p9S",
-        "nama_tanaman": "penyakit jagung",
-        "jenis_penyakit": "ini adalah description",
-        "imageUrl": "https://storage.googleapis.com/sobat-tani-project-425607.appspot.com/bookmark-image/6f0f35e3-8481-4c38-a1cf-72f1ab870c28.jpg",
-        "userId": "2aoGXnj8OETqgCTa3B6J3LWdaaU2",
-        "timestamp": "2024-06-09 08:16:06"
-    }
-}
-```
+|Content-Type|Value|
+|---|---|
+|Authorization|Bearer |
+
 
 ### Response: 404
 ```json
@@ -371,22 +284,43 @@ Request
 }
 ```
 
+### Response: 200
+```json
+{
+    "message": "Success",
+    "data": {
+        "id": "bookmark-id",
+        "nama_tanaman": "nama Tanaman",
+        "jenis_penyakit": "jenis penyakit",
+        "imageUrl": "https://storage.googleapis.com/sobat-tani-project-425607.appspot.com/bookmark-image/c836a365-3f16-4ccc-9335-2657ede14c73.jpg",
+        "userId": "user-id",
+        "timestamp": "2024-06-13 09:11:53"
+    }
+}
+```
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
-# Delete Bookmark By ID
+## deleteBookmark
 
 Deletes a specific bookmark entry by its ID
 
-### Request
+### Method: DELETE
+>```
+>/bookmark/delete/:id
+>```
+### Headers
 
-- Method: `DELETE`
-    
-- URL: `/bookmark/delete/:id`
-    
-- Headers:
-    
-    - `Authorization`: `Bearer`
+|Content-Type|Value|
+|---|---|
+|Authorization|Bearer |
+
+### Response: 404
+```json
+{
+    "message": "Bookmark tidak ditemukan!"
+}
+```
 
 ### Response: 200
 ```json
@@ -395,60 +329,33 @@ Deletes a specific bookmark entry by its ID
 }
 ```
 
-### Response: 404
-```json
-{
-    "message": "Bookmark tidak ditemukan!"
-}
-```
-
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 # 📁 Folder: Status 
 
-
-## End-point: addStatus
-# Add Status
+## Add Status
 
 Uploads an image and creates a status entry for a plant disease
 
-### Request
-
-- Method: POST
-    
-- URL: `/status`
-    
-- Headers:
-    
-    - `Authorization`: `Bearer`
-        
-    - `Content-Type : multipart/form-data`
 ### Method: POST
 >```
->https://sobat-tani-witgb3votq-et.a.run.app/status
+>/status
 >```
 ### Headers
 
 |Content-Type|Value|
 |---|---|
-|Authorization|Bearer <your-example-key>|
-
-
-### Headers
-
-|Content-Type|Value|
-|---|---|
+|Authorization|Bearer |
 |Content-Type|multipart/form-data|
 
 
-### Body formdata
+### Body
 
 |Param|value|Type|
 |---|---|---|
-|nama_tanaman|Singkong
-|text|
+|nama_tanaman|Singkong|text|
 |jenis_penyakit|Mosaik|text|
-|image|/C:/Users/Fanissa Azzahra/Downloads/data-test-submissions/cancer-2.png|file|
+|image|/C:/Users/ACER/Pictures/Screenshots/Cuplikan layar 2024-06-08 170053.png|file|
 
 
 ### Response: 201
@@ -456,27 +363,13 @@ Uploads an image and creates a status entry for a plant disease
 {
     "message": "Success",
     "data": {
-        "id": "J1KySoQ6sePsN2ntoE7R",
-        "userId": "2aoGXnj8OETqgCTa3B6J3LWdaaU2",
-        "nama_tanaman": "Singkong\n",
+        "id": "status-id",
+        "userId": "user-id",
+        "nama_tanaman": "Singkong",
         "jenis_penyakit": "Mosaik",
-        "imageUrl": "https://storage.googleapis.com/sobat-tani-project-425607.appspot.com/status-image/6ebfe922-4d17-46c6-aa77-0edf65fa1c73.jpg",
+        "imageUrl": "https://storage.googleapis.com/sobat-tani-project-425607.appspot.com/status-image/63728d81-6d31-4fbe-ab48-039cdd5418d2.jpg",
         "timestamp": {}
     }
-}
-```
-
-### Response: 400
-```json
-{
-    "message": "Masukkan Nama Tanaman!"
-}
-```
-
-### Response: 400
-```json
-{
-    "message": "Masukkan Jenis Penyakit!"
 }
 ```
 
@@ -487,46 +380,22 @@ Uploads an image and creates a status entry for a plant disease
 }
 ```
 
-### Response: 400
-```json
-{
-    "message": "Invalid token!"
-}
-```
-
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
-## End-point: getAllStatus
-# Get All Statuses
+## Get All Statuses
 
 Retrieves all status entries
 
-### Request
-
-- Method: GET
-    
-- URL: `/status`
-    
-- Headers:
-    
-    - `Authorization`: `Bearer`
 ### Method: GET
 >```
->https://sobat-tani-witgb3votq-et.a.run.app/status
+>/status
 >```
 ### Headers
 
 |Content-Type|Value|
 |---|---|
-|Authorization|Bearer <your-example-key>|
-
-
-### Body formdata
-
-|Param|value|Type|
-|---|---|---|
-
+|Authorization|Bearer |
 
 ### Response: 200
 ```json
@@ -534,24 +403,24 @@ Retrieves all status entries
     "message": "Succecss",
     "data": [
         {
-            "id": "J1KySoQ6sePsN2ntoE7R",
-            "userId": "2aoGXnj8OETqgCTa3B6J3LWdaaU2",
-            "imageUrl": "https://storage.googleapis.com/sobat-tani-project-425607.appspot.com/status-image/6ebfe922-4d17-46c6-aa77-0edf65fa1c73.jpg",
-            "nama_tanaman": "Singkong\n",
-            "jenis_penyakit": "Mosaik",
-            "timestamp": "2024-06-09 08:28:24"
-        },
-        {
-            "id": "QsKIDYj1srBBs0dKJkOA",
-            "userId": "SaP0QYo5EgZjBqPew2IReZQUWPD3",
+            "id": "status-id",
+            "userId": "user-id",
             "imageUrl": "https://storage.googleapis.com/sobat-tani-project-425607.appspot.com/status-image/0c5c5013-129a-45fb-a863-f65707693297.jpg",
             "nama_tanaman": "Rekomendasi obat Penyakit Garis-Garis Coklat (Brown Streak Disease)",
             "jenis_penyakit": "Berikan tanaman nutrisi yang cukup untuk meningkatkan sistem kekebalan tanaman terhadap penyakit. Namun, hindari pemupukan yang berlebihan karena dapat membuat tanaman lebih rentan terhadap serangan penyakit.",
             "timestamp": "2024-06-08 17:34:03"
         },
         {
-            "id": "yysaMbE1pLytCL8RFxH4",
-            "userId": "SaP0QYo5EgZjBqPew2IReZQUWPD3",
+            "id": "status-id",
+            "userId": "user-id",
+            "imageUrl": "https://storage.googleapis.com/sobat-tani-project-425607.appspot.com/status-image/63728d81-6d31-4fbe-ab48-039cdd5418d2.jpg",
+            "nama_tanaman": "Singkong",
+            "jenis_penyakit": "Mosaik",
+            "timestamp": "2024-06-13 09:34:08"
+        },
+        {
+            "id": "status-id",
+            "userId": "user-id",
             "imageUrl": "https://storage.googleapis.com/sobat-tani-project-425607.appspot.com/status-image/c1b58a6c-a71f-42c8-90c1-43900eaaabed.jpg",
             "nama_tanaman": "Rekomendasi obat Penyakit Garis-Garis Coklat (Brown Streak Disease)",
             "jenis_penyakit": "Berikan tanaman nutrisi yang cukup untuk meningkatkan sistem kekebalan tanaman terhadap penyakit. Namun, hindari pemupukan yang berlebihan karena dapat membuat tanaman lebih rentan terhadap serangan penyakit.",
@@ -561,46 +430,36 @@ Retrieves all status entries
 }
 ```
 
-### Response: 400
-```json
-{
-    "message": "Invalid token!"
-}
-```
-
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
-
-## End-point: getStatusById
-# Get Status By ID
+## Get Status By ID
 
 Retreieves a specific status entry by its ID
 
-### Request
-
-- Method: GET
-    
-- URL: `/status/:id`
-    
-- Headers:
-    
-    - `Authorization`: `Bearer`
 ### Method: GET
 >```
->https://sobat-tani-witgb3votq-et.a.run.app/status/:id
+>/status/:id
 >```
 ### Headers
 
 |Content-Type|Value|
 |---|---|
-|Authorization|Bearer <your-example-key>|
+|Authorization|Bearer |
 
-
-### Body formdata
-
-|Param|value|Type|
-|---|---|---|
-
+### Response: 200
+```json
+{
+    "message": "Success",
+    "data": {
+        "id": "status-id",
+        "userId": "user-id",
+        "nama_tanaman": "Rekomendasi obat Penyakit Garis-Garis Coklat (Brown Streak Disease)",
+        "jenis_penyakit": "Berikan tanaman nutrisi yang cukup untuk meningkatkan sistem kekebalan tanaman terhadap penyakit. Namun, hindari pemupukan yang berlebihan karena dapat membuat tanaman lebih rentan terhadap serangan penyakit.",
+        "imageUrl": "https://storage.googleapis.com/sobat-tani-project-425607.appspot.com/status-image/0c5c5013-129a-45fb-a863-f65707693297.jpg",
+        "timestamp": "2024-06-08 17:34:03"
+    }
+}
+```
 
 ### Response: 404
 ```json
@@ -609,61 +468,21 @@ Retreieves a specific status entry by its ID
 }
 ```
 
-### Response: 200
-```json
-{
-    "message": "Success",
-    "data": {
-        "id": "J1KySoQ6sePsN2ntoE7R",
-        "userId": "2aoGXnj8OETqgCTa3B6J3LWdaaU2",
-        "nama_tanaman": "Singkong\n",
-        "jenis_penyakit": "Mosaik",
-        "imageUrl": "https://storage.googleapis.com/sobat-tani-project-425607.appspot.com/status-image/6ebfe922-4d17-46c6-aa77-0edf65fa1c73.jpg",
-        "timestamp": "2024-06-09 08:28:24"
-    }
-}
-```
-
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
-
-## End-point: deleteStatus
-# Delete Status
+## Delete Status
 
 Deletes a specific status entry by its ID, including the associated image
 
-### Request
-
-- Method: `DELETE`
-    
-- URL: `/status/:id`
-    
-- Headers:
-    
-    - `Authorization`: `Bearer`
 ### Method: DELETE
 >```
->https://sobat-tani-witgb3votq-et.a.run.app/status/:id
+>/status/:id
 >```
 ### Headers
 
 |Content-Type|Value|
 |---|---|
-|Authorization|Bearer <your-example-key>|
-
-
-### Body formdata
-
-|Param|value|Type|
-|---|---|---|
-
-
-### Response: 404
-```json
-{
-    "message": "Status not found"
-}
-```
+|Authorization|Bearer |
 
 ### Response: 200
 ```json
@@ -672,41 +491,30 @@ Deletes a specific status entry by its ID, including the associated image
 }
 ```
 
+### Response: 404
+```json
+{
+    "message": "Status not found"
+}
+```
+
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
-# 📁 Folder: detail-plants 
+# 📁 detail-plants 
 
-
-## End-point: getDetailsPlant
-# Get Plant Details
+## Get Plant Details
 
 Retrieves details of a plant based on the provided name and disease type
 
-### Request
-
-- Method: `GET`
-    
-- URL: `/plant-detail`
-    
-- Headers:
-    
-    - `Authorization`: `Bearer`
-        
-
-### Query Parameters
-
-- `nama_tanaman`: (string) Name of the plant.
-    
-- `jenis_penyakit`: (string) Type of the disease.
 ### Method: GET
 >```
->https://sobat-tani-witgb3votq-et.a.run.app/plant?nama_tanaman=Singkong&jenis_penyakit=Hawar Bakteri
+>/plant?jenis_penyakit=Hawar Bakteri
 >```
 ### Headers
 
 |Content-Type|Value|
 |---|---|
-|Authorization|Bearer <your-example-key>|
+|Authorization|Bearer |
 
 
 ### Query Params
@@ -717,34 +525,13 @@ Retrieves details of a plant based on the provided name and disease type
 |jenis_penyakit|Hawar Bakteri|
 
 
-### Response: 400
-```json
-{
-    "message": "Invalid token!"
-}
-```
-
-### Response: 400
-```json
-{
-    "message": "Invalid token!"
-}
-```
-
-### Response: 400
-```json
-{
-    "message": "Invalid token!"
-}
-```
-
 ### Response: 200
 ```json
 {
     "message": "Success",
     "data": [
         {
-            "id": "WDTguSlPf6gipOWf8q7H",
+            "id": "plants-id",
             "ciri_ciri": {
                 "0": "Daun menguning dan menggulung.",
                 "1": "Bercak coklat pada daun yang bisa menyebar ke batang.",
@@ -767,7 +554,15 @@ Retrieves details of a plant based on the provided name and disease type
 }
 ```
 
+### Response: 400
+```json
+{
+    "message": "Missing query parameters"
+}
+```
+
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+
 
 # Running the Application
